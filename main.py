@@ -15,7 +15,14 @@ for path in filepaths:
     name = filename.title()
     # print(name)
     pdf.set_font(family="Times", size=16, style="B")
-    pdf.cell(w=50, h=8, txt=f"{name}")
+    pdf.cell(w=50, h=8, txt=f"{name}", ln=1)
+
+    # get content of txt file
+    with open(path, "r") as file:
+        content = file.read()
+    # add txt to pdfs
+    pdf.set_font(family="Times", size=12)
+    pdf.multi_cell(w=0, h=6, txt=content)
 
 pdf.output("pdfs/output.pdf")
 
